@@ -1,6 +1,6 @@
 ---
 name: web-search-by-searxng
-description: Search using a custom SearXNG instance via HTTP API. Use when Kimi needs to perform web search using a user-provided or configured SearXNG instance URL. Supports searching with query, format (json/csv/rss), language, time range, categories, engines, pagination, and safe search filtering.
+description: Search using a custom SearXNG instance via HTTP API. Use when Claude needs to perform web search using a user-provided or configured SearXNG instance URL. Supports searching with query, format (json/csv/rss), language, time range, categories, engines, pagination, and safe search filtering.
 ---
 
 # SearXNG Search
