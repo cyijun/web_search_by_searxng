@@ -20,18 +20,18 @@
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/cyijun/searxng-search-skill.git
-cd searxng-search-skill
+git clone https://github.com/cyijun/web_search_by_searxng.git
+cd web_search_by_searxng
 ```
 
 ### 2. 安装到 Claude Code
 
 ```bash
 # 将 .skill 文件复制到 Claude Code 的 skills 目录
-cp searxng-search.skill ~/.claude/skills/
+cp web-search-by-searxng.skill ~/.claude/skills/
 
 # 或者直接使用 skill 命令安装
-claude skill install ./searxng-search.skill
+claude skill install ./web-search-by-searxng.skill
 ```
 
 ## 使用方法
@@ -114,8 +114,8 @@ Claude: 我将使用 SearXNG 为你搜索...
 ## 项目结构
 
 ```
-searxng-search/
-├── searxng-search.skill      # Claude Code skill 文件
+web_search_by_searxng/
+├── web-search-by-searxng.skill      # Claude Code skill 文件
 ├── SKILL.md                  # Skill 详细文档
 ├── scripts/
 │   └── searxng_search.py     # 命令行搜索工具

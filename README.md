@@ -20,18 +20,18 @@ A [Claude Code](https://github.com/anthropics/anthropic-coder) skill for privacy
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/cyijun/searxng-search-skill.git
-cd searxng-search-skill
+git clone https://github.com/cyijun/web_search_by_searxng.git
+cd web_search_by_searxng
 ```
 
 ### 2. Install to Claude Code
 
 ```bash
 # Copy the .skill file to Claude Code's skills directory
-cp searxng-search.skill ~/.claude/skills/
+cp web-search-by-searxng.skill ~/.claude/skills/
 
 # Or install using the skill command
-claude skill install ./searxng-search.skill
+claude skill install ./web-search-by-searxng.skill
 ```
 
 ## Usage
@@ -114,8 +114,8 @@ Use `!` prefix to quickly specify search engines:
 ## Project Structure
 
 ```
-searxng-search/
-├── searxng-search.skill      # Claude Code skill file
+web_search_by_searxng/
+├── web-search-by-searxng.skill      # Claude Code skill file
 ├── SKILL.md                  # Detailed skill documentation
 ├── scripts/
 │   └── searxng_search.py     # CLI search tool
