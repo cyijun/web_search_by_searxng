@@ -122,7 +122,14 @@ def format_results(results: dict[str, Any]) -> str:
     unresponsive = results.get("unresponsive_engines", [])
     if unresponsive:
         output.append(f"\n{'-' * 60}")
-        output.append(f"Unresponsive engines: {', '.join(unresponsive)}")
+        # Handle both string and list items in unresponsive_engines
+        formatted = []
+        for item in unresponsive:
+            if isinstance(item, list):
+                formatted.append(', '.join(str(x) for x in item))
+            else:
+                formatted.append(str(item))
+        output.append(f"Unresponsive engines: {', '.join(formatted)}")
     
     return "\n".join(output)
 
