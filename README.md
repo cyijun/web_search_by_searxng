@@ -1,165 +1,167 @@
 # SearXNG Search Skill
 
-一个用于 [Claude Code](https://github.com/anthropics/anthropic-coder) 的 Skill，通过 SearXNG 搜索引擎实现隐私友好的网络搜索功能。
+English | [中文](README.zh.md)
 
-## 功能特性
+A [Claude Code](https://github.com/anthropics/anthropic-coder) skill for privacy-friendly web search using the SearXNG metasearch engine.
 
-- 🔍 支持自定义 SearXNG 实例
-- 🌐 多类别搜索（网页、图片、视频、新闻、科学文献等）
-- 🎯 多引擎聚合（Google、DuckDuckGo、Bing、Wikipedia 等）
-- 📊 支持 JSON/CSV/RSS 多种输出格式
-- 🌍 多语言支持
-- ⏰ 时间范围过滤（天、月、年）
-- 🔒 安全搜索级别设置
-- 📄 分页支持
+## Features
 
-## 安装
+- 🔍 Custom SearXNG instance support
+- 🌐 Multi-category search (web, images, videos, news, scientific papers, etc.)
+- 🎯 Multi-engine aggregation (Google, DuckDuckGo, Bing, Wikipedia, etc.)
+- 📊 Multiple output formats (JSON/CSV/RSS)
+- 🌍 Multi-language support
+- ⏰ Time range filtering (day, month, year)
+- 🔒 Safe search level settings
+- 📄 Pagination support
 
-### 1. 克隆仓库
+## Installation
+
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/cyijun/searxng-search-skill.git
 cd searxng-search-skill
 ```
 
-### 2. 安装到 Claude Code
+### 2. Install to Claude Code
 
 ```bash
-# 将 .skill 文件复制到 Claude Code 的 skills 目录
+# Copy the .skill file to Claude Code's skills directory
 cp searxng-search.skill ~/.claude/skills/
 
-# 或者直接使用 skill 命令安装
+# Or install using the skill command
 claude skill install ./searxng-search.skill
 ```
 
-## 使用方法
+## Usage
 
-### 配置 SearXNG 实例
+### Configure SearXNG Instance
 
-使用前需要配置 SearXNG 实例 URL。有以下几种方式：
+You need to configure a SearXNG instance URL before use. There are several ways:
 
-1. **环境变量**
+1. **Environment Variable**
    ```bash
    export SEARXNG_URL=https://searx.example.org
    ```
 
-2. **在对话中直接指定**
-   告诉 Claude 你的 SearXNG 实例地址即可
+2. **Specify in Conversation**
+   Simply tell Claude your SearXNG instance address
 
-3. **使用公共实例**
+3. **Use Public Instances**
    - https://searx.be
    - https://search.sapti.me
    - https://search.bus-hit.me
-   - [更多公共实例](https://searx.space/)
+   - [More public instances](https://searx.space/)
 
-### 命令行工具
+### Command Line Tool
 
 ```bash
-# 基本搜索
-python scripts/searxng_search.py -u https://searx.example.org -q "Python 教程"
+# Basic search
+python scripts/searxng_search.py -u https://searx.example.org -q "Python tutorial"
 
-# JSON 输出
-python scripts/searxng_search.py -u https://searx.example.org -q "Python 教程" --format json
+# JSON output
+python scripts/searxng_search.py -u https://searx.example.org -q "Python tutorial" --format json
 
-# 指定语言和类别
-python scripts/searxng_search.py -u https://searx.example.org -q "新闻" --lang zh --categories news
+# Specify language and category
+python scripts/searxng_search.py -u https://searx.example.org -q "news" --lang en --categories news
 
-# 时间范围过滤
+# Time range filter
 python scripts/searxng_search.py -u https://searx.example.org -q "AI" --time-range day
 
-# 指定搜索引擎
+# Specify search engines
 python scripts/searxng_search.py -u https://searx.example.org -q "Python" --engines google,stackoverflow
 
-# 使用环境变量
+# Use environment variable
 export SEARXNG_URL=https://searx.example.org
-python scripts/searxng_search.py -q "搜索内容"
+python scripts/searxng_search.py -q "search query"
 ```
 
-### 在 Claude Code 中使用
+### Use in Claude Code
 
-安装 skill 后，Claude 会自动在需要搜索时使用 SearXNG：
+After installing the skill, Claude will automatically use SearXNG when search is needed:
 
 ```
-用户: 帮我搜索最新的 Python 3.12 新特性
-Claude: 我将使用 SearXNG 为你搜索...
+User: Help me search for the latest Python 3.12 features
+Claude: I'll search for you using SearXNG...
 ```
 
-## 支持的搜索类别
+## Supported Search Categories
 
-| 类别 | 说明 | 示例引擎 |
-|------|------|----------|
-| `general` | 通用网页搜索 | Google, DuckDuckGo, Bing |
-| `images` | 图片搜索 | Google Images, Unsplash |
-| `videos` | 视频搜索 | YouTube, Vimeo |
-| `news` | 新闻搜索 | Google News, Reuters |
-| `science` | 学术文献 | Google Scholar, arXiv |
-| `it` | IT/技术资源 | GitHub, Stack Overflow |
-| `music` | 音乐搜索 | SoundCloud, Bandcamp |
-| `files` | 文件搜索 | - |
-| `map` | 地图搜索 | OpenStreetMap |
-| `social_media` | 社交媒体 | Reddit |
+| Category | Description | Example Engines |
+|----------|-------------|-----------------|
+| `general` | General web search | Google, DuckDuckGo, Bing |
+| `images` | Image search | Google Images, Unsplash |
+| `videos` | Video search | YouTube, Vimeo |
+| `news` | News articles | Google News, Reuters |
+| `science` | Scientific papers | Google Scholar, arXiv |
+| `it` | IT/Tech resources | GitHub, Stack Overflow |
+| `music` | Music search | SoundCloud, Bandcamp |
+| `files` | File search | - |
+| `map` | Map search | OpenStreetMap |
+| `social_media` | Social media | Reddit |
 
-## Bang 语法
+## Bang Syntax
 
-使用 `!` 前缀快速指定搜索引擎：
+Use `!` prefix to quickly specify search engines:
 
-- `!go Python` - 搜索 Google
-- `!wp 人工智能` - 搜索 Wikipedia
-- `!gh machine learning` - 搜索 GitHub
-- `!yt 音乐视频` - 搜索 YouTube
-- `!gos 深度学习论文` - 搜索 Google Scholar
+- `!go Python` - Search Google
+- `!wp artificial intelligence` - Search Wikipedia
+- `!gh machine learning` - Search GitHub
+- `!yt music video` - Search YouTube
+- `!gos deep learning paper` - Search Google Scholar
 
-## 项目结构
+## Project Structure
 
 ```
 searxng-search/
-├── searxng-search.skill      # Claude Code skill 文件
-├── SKILL.md                  # Skill 详细文档
+├── searxng-search.skill      # Claude Code skill file
+├── SKILL.md                  # Detailed skill documentation
 ├── scripts/
-│   └── searxng_search.py     # 命令行搜索工具
+│   └── searxng_search.py     # CLI search tool
 └── references/
-    └── engines_and_categories.md  # 引擎和类别参考文档
+    └── engines_and_categories.md  # Engine and category reference
 ```
 
-## API 参数
+## API Parameters
 
-| 参数 | 类型 | 说明 |
-|------|------|------|
-| `q` | string | 搜索查询（必填） |
-| `format` | string | 输出格式: `json`, `csv`, `rss` |
-| `language` | string | 语言代码，如 `en`, `zh`, `de` |
-| `pageno` | int | 页码，默认 1 |
-| `time_range` | string | 时间范围: `day`, `month`, `year` |
-| `categories` | string | 类别列表，逗号分隔 |
-| `engines` | string | 引擎列表，逗号分隔 |
-| `safesearch` | int | 安全搜索: `0`=关闭, `1`= moderate, `2`=严格 |
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `q` | string | Search query (required) |
+| `format` | string | Output format: `json`, `csv`, `rss` |
+| `language` | string | Language code, e.g., `en`, `zh`, `de` |
+| `pageno` | int | Page number, default 1 |
+| `time_range` | string | Time range: `day`, `month`, `year` |
+| `categories` | string | Category list, comma-separated |
+| `engines` | string | Engine list, comma-separated |
+| `safesearch` | int | Safe search: `0`=off, `1`=moderate, `2`=strict |
 
-## 自行部署 SearXNG
+## Self-Host SearXNG
 
-如需更稳定的服务，建议自行部署：
+For more stable service, consider self-hosting:
 
 ```bash
-# 使用 Docker 部署
+# Deploy using Docker
 docker run -d --name searxng \
   -p 8080:8080 \
   -v searxng-data:/etc/searxng \
   searxng/searxng
 ```
 
-更多部署方式请参考 [SearXNG 官方文档](https://docs.searxng.org/)。
+For more deployment options, refer to the [SearXNG official documentation](https://docs.searxng.org/).
 
-## 注意事项
+## Important Notes
 
-1. **格式支持**：JSON/CSV/RSS 格式需要在 SearXNG 实例的 `settings.yml` 中启用，部分公共实例可能禁用这些格式
-2. **速率限制**：请合理使用，避免频繁请求
-3. **引擎可用性**：不同实例启用的搜索引擎不同，可通过实例的偏好设置页面查看
+1. **Format Support**: JSON/CSV/RSS formats need to be enabled in the SearXNG instance's `settings.yml`. Some public instances may disable these formats.
+2. **Rate Limiting**: Please use responsibly and avoid frequent requests.
+3. **Engine Availability**: Different instances have different engines enabled. Check the instance's preferences page.
 
-## 许可证
+## License
 
 MIT License
 
-## 相关链接
+## Related Links
 
-- [SearXNG 官网](https://docs.searxng.org/)
-- [SearXNG 公共实例列表](https://searx.space/)
-- [Claude Code 文档](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
+- [SearXNG Official Site](https://docs.searxng.org/)
+- [SearXNG Public Instances](https://searx.space/)
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview)
